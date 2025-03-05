@@ -1,0 +1,28 @@
+{
+    "nextPaletteID": 4,
+    "palettes": {
+        "custom3": {
+            "id": "custom3",
+            "name": "Pico-8",
+            "colors": [
+                "#000000",
+                "#FFF1E8",
+                "#FF004D",
+                "#FF77A8",
+                "#FFA300",
+                "#FFEC27",
+                "#008790",
+                "#00E436",
+                "#1D2B53",
+                "#29ADFF",
+                "#7E2553",
+                "#C2C3C7",
+                "#83769C",
+                "#FFCCAA",
+                "#5F574F",
+                "#000000"
+            ],
+            "custom": true
+        }
+    }
+}
