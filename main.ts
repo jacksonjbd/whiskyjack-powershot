@@ -14,7 +14,6 @@ namespace StatusBarKind {
 }
 function Tutorial_Screen2 () {
     Game_GameSpeed = 1
-    Tutorial_Phase2 = true
     FreezeGame()
     music.setVolume(128)
     music.play(music.melodyPlayable(music.baDing), music.PlaybackMode.InBackground)
@@ -31,6 +30,7 @@ function Tutorial_Screen2 () {
         Game_isPlayer2Ready = true
         Game_isPlayer1Ready = true
         Game_isPlaying = true
+        Tutorial_Phase2 = true
     })
 }
 sprites.onOverlap(SpriteKind.Ball1, SpriteKind.Player2, function (sprite, otherSprite) {
@@ -1023,7 +1023,7 @@ sprites.onOverlap(SpriteKind.Player2, SpriteKind.Tutorial2, function (sprite, ot
     }
     if (sprites.allOfKind(SpriteKind.Tutorial2).length == 0 && sprites.allOfKind(SpriteKind.Tutorial1).length == 0) {
         if (Tutorial_Phase2) {
-            Tutorial_End()
+        	
         } else {
             Tutorial_Screen2()
         }
@@ -3073,7 +3073,6 @@ function CreateEffects () {
 }
 function Tutorial_End () {
     if (Tutorial_Phase2) {
-        Tutorial_Phase2 = false
         Game_GameSpeed = 1
         FreezeGame()
         music.setVolume(128)
@@ -4773,7 +4772,7 @@ sprites.onOverlap(SpriteKind.Player1, SpriteKind.Tutorial1, function (sprite, ot
     }
     if (sprites.allOfKind(SpriteKind.Tutorial2).length == 0 && sprites.allOfKind(SpriteKind.Tutorial1).length == 0) {
         if (Tutorial_Phase2) {
-            Tutorial_End()
+        	
         } else {
             Tutorial_Screen2()
         }
@@ -5289,10 +5288,10 @@ let Effect_FlashMiddle: SpreadEffectData = null
 let Effect_FlashLeft: SpreadEffectData = null
 let Ball_PlayerAcceleration = 0
 let Ball_PlayerVelocity = 0
+let Tutorial_Phase2 = false
 let Game_isPlaying = false
 let Game_isPlayer1Ready = false
 let Game_isPlayer2Ready = false
-let Tutorial_Phase2 = false
 let Game_GameSpeed = 0
 music.stopAllSounds()
 music.setVolume(255)
@@ -5330,6 +5329,12 @@ game.onUpdateInterval(100, function () {
                 Game_WalkSoundCounter = true
                 music.play(music.createSoundEffect(WaveShape.Triangle, 286, 0, 139, 0, 50, SoundExpressionEffect.None, InterpolationCurve.Linear), music.PlaybackMode.InBackground)
             }
+        }
+    }
+    if (Tutorial_Phase2) {
+        if (sprites.allOfKind(SpriteKind.Tutorial2).length == 0 && sprites.allOfKind(SpriteKind.Tutorial1).length == 0) {
+            Tutorial_End()
+            Tutorial_Phase2 = false
         }
     }
 })
